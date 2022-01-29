@@ -1,0 +1,58 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.PruebaUPAX" parent="Theme.Design.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/camposAzul</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+
+    <style name="AlertDialog" parent="Base.Theme.AppCompat.Light.Dialog">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:background">@color/fondoAzul</item>
+        <item name="android:textAppearanceMedium">@style/TextoAlerta</item>
+        <item name="buttonBarPositiveButtonStyle">@style/BotonPositivo</item>
+        <!-- Style for negative button -->
+        <item name="buttonBarNegativeButtonStyle">@style/BotonNegativo</item>
+    </style>
+
+
+    <style name="TextoAlerta" parent="AlertDialog">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="BotonPositivo" parent="@style/AlertDialog">
+        <!-- text color for the button -->
+        <item name="android:textColor">@color/VerdeSemaforo</item>
+        <!-- Background tint for the button -->
+        <item name="android:background">@drawable/boton_dialog_reg</item>
+        <item name="paddingEnd">2dp</item>
+        <!--<item name="backgroundTint">@color/negroTrans</item>-->
+    </style>
+
+
+    <style name="BotonFlotante" parent="Base.Theme.AppCompat.Light.Dialog">
+        <!-- text color for the button -->
+        <!-- Background tint for the button -->
+        <item name="android:backgroundTint">@color/floating_button</item>
+        <!--<item name="backgroundTint">@color/negroTrans</item>-->
+    </style>
+
+    <style name="BotonNegativo" parent="@style/AlertDialog">
+        <item name="android:textColor">@color/RojoSemaforo</item>
+        <!-- Background tint for the button -->
+        <item name="android:background">@drawable/boton_dialog_reg</item>
+        <item name="paddingEnd">2dp</item>
+        <!--<item name="backgroundTint">@color/negroTrans</item>-->
+    </style>
+</resources>

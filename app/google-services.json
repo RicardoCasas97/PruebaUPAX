@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "284304881239",
+    "project_id": "pruebaupax-21f5d",
+    "storage_bucket": "pruebaupax-21f5d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284304881239:android:9bde719b903d87faebd512",
+        "android_client_info": {
+          "package_name": "com.example.pruebaupax"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "284304881239-q9au7gdsunhcp7pm64c075d89ov49mpj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGwPIJUubp3mxdR74HzSzae6HOLCt_ks0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "284304881239-q9au7gdsunhcp7pm64c075d89ov49mpj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

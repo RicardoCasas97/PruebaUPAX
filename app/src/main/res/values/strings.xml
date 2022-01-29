@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">PruebaUPAX</string>
+    <string name="titulo">Titulo:</string>
+    <string name="resumen">Resumen:</string>
+    <string name="fecha_de_salida">Fecha de salida:</string>
+    <string name="calificaci_n">Calificación:</string>
+    <string name="error_sin_resumen">La película no cuenta con resumen en este momento</string>
+    <string name="solo_para_adultos">¿Solo para adultos?</string>
+    <string name="si">Sí</string>
+    <string name="no">No</string>
+    <string name="ubicacionNotLargo">Tu ubicación a sido notificada y guardada en la base de datos</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="mapa">Mapa</string>
+</resources>

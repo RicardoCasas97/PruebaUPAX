@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textoNormal">16sp</dimen>
+    <dimen name="textoGrande">20sp</dimen>
+    <dimen name="textoChico">12sp</dimen>
+    <dimen name="fragmentoVentana">350sp</dimen>
+    <dimen name="sizeTextViewNormal">30dp</dimen>
+</resources>
