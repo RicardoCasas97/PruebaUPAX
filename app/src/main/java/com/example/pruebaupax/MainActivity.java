@@ -12,6 +12,7 @@ import android.content.BroadcastReceiver;
 import android.content.ClipData;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
@@ -399,6 +400,21 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             helper.pop.popUpListener(getCurrentFocus(),e.getMessage(),false,null);
 
+        }
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount()<1){
+            helper.pop.dialogoDefault("Cerrar", "¿Deseas cerrar la aplicación?", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    MainActivity.super.onBackPressed();
+                }
+            },null);
+        }else {
+            getSupportFragmentManager().popBackStack();
         }
 
     }
