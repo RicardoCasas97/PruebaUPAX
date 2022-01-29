@@ -120,9 +120,7 @@ public class activityHelper {
 
                     } else {
                         Log.d(TAG, "Faltan permisos");
-                        //permission is denied (this is the first time, when "never ask again" is not checked) so ask again explaining the usage of permission
-//                        // shouldShowRequestPermissionRationale will return true
-                        //show the dialog or snackbar saying its necessary and try again otherwise proceed with setup.
+
                         if (ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.SEND_SMS) || ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.ACCESS_FINE_LOCATION)) {
                             pop.dialogoDefault("Hay permisos pendientes de aceptar", "¿Desea aceptarlos?", new DialogInterface.OnClickListener() {
                                 @Override
@@ -132,18 +130,17 @@ public class activityHelper {
                                             pedirPermisos();
                                             break;
                                         case DialogInterface.BUTTON_NEGATIVE:
-                                            // proceed with logic by disabling the related features or quit the app.
+
                                             break;
                                     }
                                 }
                             }, null);
                         }
-                        //permission is denied (and never ask again is  checked)
-                        //shouldShowRequestPermissionRationale will return false
+
                         else {
-                            Toast.makeText(context, "Go to settings and enable permissions", Toast.LENGTH_LONG)
+                            Toast.makeText(context, "Ve a configuraciones y habilita los permisos requeridos", Toast.LENGTH_LONG)
                                     .show();
-                            //                            //proceed with logic by disabling the related features or quit the app.
+                            //
                         }
                     }
                 }
