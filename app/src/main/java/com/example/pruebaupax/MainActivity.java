@@ -172,6 +172,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+    //Metodo creado para la inicializacion de variables
     private void InicializarVariables(){
         helper = new activityHelper();
         helper.InicializarActividad(MainActivity.this,MainActivity.this);
@@ -252,6 +254,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+    //Activities on result
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode==Tomar_Multiples_Imagenes){
@@ -260,19 +264,24 @@ public class MainActivity extends AppCompatActivity {
 
         if (requestCode == CAPTURAR_FOTO)
         {
-            if(data!=null) {
+            try {
+                if(data!=null) {
 
-                Bitmap fotoTomada = (Bitmap) data.getExtras().get("data");
-                Uri uri = helper.BitmapAUri(MainActivity.this,fotoTomada,data.getDataString());
-                StorageReference reference = storageRef.child("Imagenes").child(uri.getLastPathSegment());
-                reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        helper.pop.popUpListener(getCurrentFocus(), "Imagen subida satisfactoriamente", true, null);
+                    Bitmap fotoTomada = (Bitmap) data.getExtras().get("data");
+                    Uri uri = helper.BitmapAUri(MainActivity.this,fotoTomada,data.getDataString());
+                    StorageReference reference = storageRef.child("Imagenes").child(uri.getLastPathSegment());
+                    reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            helper.pop.popUpListener(getCurrentFocus(), "Imagen subida satisfactoriamente", true, null);
 
-                    }
-                });
+                        }
+                    });
+                }
+            }catch (Exception e){
+                helper.pop.popUpListener(getCurrentFocus(),e.getMessage(),false,null);
             }
+
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -329,6 +338,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+    //Metodo para subir fotos de galeria a firebase
     private void SubirFotosDeGaleria(int requestCode, int resultCode, Intent data){
         try {
 
@@ -340,7 +351,9 @@ public class MainActivity extends AppCompatActivity {
                 imagesEncodedList = new ArrayList<String>();
                 if(data.getData()!=null){
 
-                    Uri uri=data.getData();
+                    //Toma este camino si solo se selecciona una foto
+
+                    Uri uri=data.getData();//Crea un uri con la foto tomada
                     StorageReference reference = storageRef.child("Imagenes").child(uri.getLastPathSegment());
 
                     reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -351,16 +364,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
 
-                    Cursor cursor = getContentResolver().query(uri,
-                            filePathColumn, null, null, null);
-
-                    cursor.moveToFirst();
-
-                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                    imageEncoded  = cursor.getString(columnIndex);
-                    cursor.close();
-
                 } else {
+                    //Toma este camino al seleccionar mas de una imagen
                     if (data.getClipData() != null) {
                         ClipData clipData = data.getClipData();
                         ArrayList<Uri> uriArrayList = new ArrayList<Uri>();
@@ -368,11 +373,11 @@ public class MainActivity extends AppCompatActivity {
 
                             ClipData.Item item = clipData.getItemAt(i);
                             Uri uri = item.getUri();
-                            uriArrayList.add(uri);
+                            uriArrayList.add(uri);//Crea un uri por cada fotografia y la almacena en un arraylist
 
-                            StorageReference reference = storageRef.child("Imagenes").child(uri.getLastPathSegment());
+                            StorageReference reference = storageRef.child("Imagenes").child(uri.getLastPathSegment());//sube fotografia a firebase
 
-                            if (i==clipData.getItemCount()-1){
+                            if (i==clipData.getItemCount()-1){//Si la fotografia subida es la ultima del arraylist manda un popUp
                                 reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                     @Override
                                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -381,15 +386,6 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                 });
                             }
-                            Cursor cursor = getContentResolver().query(uri, filePathColumn, null, null, null);
-
-                            cursor.moveToFirst();
-
-                            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                            imageEncoded  = cursor.getString(columnIndex);
-                            imagesEncodedList.add(imageEncoded);
-                            cursor.close();
-
                         }
                         Log.i("LOG_TAG", "Imagenes seleccionadas" + uriArrayList.size());
 
